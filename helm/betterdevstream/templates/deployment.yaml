@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: betterdevstream
+  labels:
+    app: betterdevstream
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: betterdevstream
+  template:
+    metadata:
+      labels:
+        app: betterdevstream
+    spec:
+      containers:
+      - name: betterdevstream
+        image: "kehaokh/betterdevstream:{{ .Chart.AppVersion }}"
+        ports:
+        - containerPort: 8080
